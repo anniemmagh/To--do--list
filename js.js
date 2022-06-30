@@ -23,13 +23,14 @@ function addTodo(todo) {
         if (todo && todo.completed) {
             todoEl.classList.add('done')
         }
-        todoEl.innerText = todoText
+        todoEl.innerText = todoText;
         todoEl.addEventListener('click', () => {
             todoEl.classList.toggle('done')
+            todoUL.appendChild(todoEl)
             updateLS()
         })
     }
-    todoUL.addEventListener('dblclick', function(){
+    todoUL.addEventListener('dblclick', () =>{
         todoUL.removeChild(todoUL);
     })
     todoUL.appendChild(todoEl)
