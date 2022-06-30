@@ -4,49 +4,51 @@ const todoUL = document.getElementById('todos')
 
 const todos = JSON.parse(localStorage.getItem('todos'))
 
-if(todos) {
-    todos.forEach(todo =>addTodo(todo))
+if (todos) {
+    todos.forEach(todo => addTodo(todo))
 }
 
-form.addEventListener('submit', (e)=> {
+form.addEventListener('submit', (e) => {
     e.preventDefault()
     addTodo()
 })
-function addTodo(todo){
+
+function addTodo(todo) {
     let todoText = input.value
-    if(todo){
+    if (todo) {
         todoText = todo.text
     }
-    if(todoText){
+    if (todoText) {
         var todoEl = document.createElement('li')
-        if(todo && todo.completed){
-            todoEl.classList.add('completed')
+        if (todo && todo.completed) {
+            todoEl.classList.add('done')
         }
-    todoEl.innerText = todoText
-     todoEl.addEventListener('click', ()=>{
-        todoEl.classList.toggle('completed')
-        updateLS()
-     })
+        todoEl.innerText = todoText
+        todoEl.addEventListener('click', () => {
+            todoEl.classList.toggle('done')
+            updateLS()
+        })
     }
-    todoEl.addEventListener('contextmenu', (e)=>{
+    todoEl.addEventListener('contextmenu', (e) => {
         e.preventDefault()
-
+    
         todoEl.remove()
         updateLS()
     })
     todoUL.appendChild(todoEl)
-    input.value = ' '
+    input.value = ' ';
     updateLS()
 }
 
-function updateLS(){
+
+function updateLS() {
     todoEl = document.querySelectorAll('li')
     const todo = []
     todoEl.forEach(todoEl => {
         todo.push({
-            text:todoEl.innerText,
-            completed:todoEl.classList.contains('completed')
+            text: todoEl.innerText,
+            completed: todoEl.classList.contains('done')
         })
     })
-    localStorage.setItem('todos',JSON.stringify(todos))
+    localStorage.setItem('todos', JSON.stringify(todos))
 }
