@@ -24,7 +24,7 @@ function addTodo(todo){
         }
     todoEl.innerText = todoText
      todoEl.addEventListener('click', ()=>{
-        todoEl.classList('completed')
+        todoEl.classList.toggle('completed')
         updateLS()
      })
     }
