@@ -29,16 +29,14 @@ function addTodo(todo) {
             updateLS()
         })
     }
-    todoEl.addEventListener('contextmenu', (e) => {
-        e.preventDefault()
-    
-        todoEl.remove()
-        updateLS()
+    todoUL.addEventListener('dblclick', function(){
+        todoUL.removeChild(todoUL);
     })
     todoUL.appendChild(todoEl)
     input.value = ' ';
     updateLS()
 }
+
 
 
 function updateLS() {
